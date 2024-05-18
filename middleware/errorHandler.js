@@ -2,47 +2,52 @@ const constants = require("../constants");
 
 const errorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
+  res.status(statusCode);
+
   switch (statusCode) {
     case constants.VALIDATION_ERROR:
-      res.json({ 
-        tilte:"Validation Error",
+      res.json({
+        title: "Validation Error",
         message: err.message,
-        stackTrace: err.stack });
+        stackTrace: err.stack,
+      });
       break;
     case constants.UNAUTHORISED:
-      res.json({ 
-        tilte:"Unauthorised Error",
+      res.json({
+        title: "Unauthorised Error",
         message: err.message,
-        stackTrace: err.stack });
+        stackTrace: err.stack,
+      });
       break;
     case constants.FORBIDDEN:
-      res.json({ 
-        tilte:"Forbidden Error",
+      res.json({
+        title: "Forbidden Error",
         message: err.message,
-        stackTrace: err.stack });
+        stackTrace: err.stack,
+      });
       break;
     case constants.NOT_FOUND:
-      res.json({ 
-        tilte:"Resource Not Found",
+      res.json({
+        title: "Resource Not Found",
         message: err.message,
-        stackTrace: err.stack });
+        stackTrace: err.stack,
+      });
       break;
     case constants.SERVER_ERROR:
-      res.json({  
-        tilte:"	Internal Server Error",
+      res.json({
+        title: "Internal Server Error",
         message: err.message,
-        stackTrace: err.stack });
+        stackTrace: err.stack,
+      });
       break;
     default:
       res.json({
-        message: "No Error",
+        title: "Unknown Error",
+        message: err.message,
+        stackTrace: err.stack,
       });
       break;
   }
-  res.json({ 
-        tilte:"Validation Error",
-        message: err.message,
-        stackTrace: err.stack });
 };
 
 module.exports = errorHandler;
