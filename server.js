@@ -7,10 +7,12 @@ connectDb();
 const app = express();
 const port  = process.env.PORT || 5000 ;
 
+const contactsRoutes = require('./routes/contactsRoutes');
+const userRoutes =  require('./routes/userRoutes');
 
 app.use(express.json())
-app.use('/api/contacts',require('./Routes/contactsRoutes'));
-app.use("/api/users", require('./Routes/userRoutes'));
+app.use('/api/contacts',contactsRoutes);
+app.use("/api/users",userRoutes );
 app.use(errorHandler)
 
 app.get('/',(req,res)=>{
