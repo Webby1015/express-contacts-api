@@ -13,7 +13,10 @@ app.use('/api/contacts',require('./Routes/contactsRoutes'));
 app.use("/api/users", require('./Routes/userRoutes'));
 app.use(errorHandler)
 
-
+app.get('/',(req,res)=>{
+    res.status(200).json({
+        message: "Contact API is working",})
+})
 
 app.listen(port,()=>{
     console.log(`Server is running at ${port}`)
